@@ -46,6 +46,11 @@ public class MainWindowDialogs {
 	}
 
 	@CalledOnlyBy(AmidstThread.EDT)
+	public WorldSeed askForSalt(String type) {
+		return new SeedPrompt(frame).askForSeed();
+	}
+
+	@CalledOnlyBy(AmidstThread.EDT)
 	public File askForSaveGame() {
 		return showOpenDialogAndGetSelectedFileOrNull(createSaveGameFileChooser());
 	}

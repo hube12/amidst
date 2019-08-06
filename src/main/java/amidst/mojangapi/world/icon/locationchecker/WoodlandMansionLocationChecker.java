@@ -16,13 +16,13 @@ public class WoodlandMansionLocationChecker extends AllValidLocationChecker {
 	private static final boolean USE_TWO_VALUES_FOR_UPDATE = true;
 	private static final int STRUCTURE_SIZE = 32;
 
-	public WoodlandMansionLocationChecker(long seed, BiomeDataOracle biomeDataOracle, List<Biome> validBiomesForStructure) {
+	public WoodlandMansionLocationChecker(long seed, BiomeDataOracle biomeDataOracle, List<Biome> validBiomesForStructure, long structureSalt) {
 		super(
 				new StructureAlgorithm(
 						seed,
 						MAGIC_NUMBER_FOR_SEED_1,
 						MAGIC_NUMBER_FOR_SEED_2,
-						MAGIC_NUMBER_FOR_SEED_3,
+						structureSalt,
 						MAX_DISTANCE_BETWEEN_SCATTERED_FEATURES,
 						MIN_DISTANCE_BETWEEN_SCATTERED_FEATURES,
 						USE_TWO_VALUES_FOR_UPDATE),

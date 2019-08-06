@@ -13,10 +13,7 @@ import amidst.fragment.FragmentGraph;
 import amidst.fragment.FragmentManager;
 import amidst.fragment.layer.LayerManager;
 import amidst.fragment.layer.LayerReloader;
-import amidst.mojangapi.world.Dimension;
-import amidst.mojangapi.world.World;
-import amidst.mojangapi.world.WorldSeed;
-import amidst.mojangapi.world.WorldType;
+import amidst.mojangapi.world.*;
 import amidst.mojangapi.world.coordinates.CoordinatesInWorld;
 import amidst.mojangapi.world.export.WorldExporter;
 import amidst.mojangapi.world.export.WorldExporterConfiguration;
@@ -150,6 +147,11 @@ public class ViewerFacade {
 	@CalledOnlyBy(AmidstThread.EDT)
 	public WorldType getWorldType() {
 		return world.getWorldType();
+	}
+
+	@CalledOnlyBy(AmidstThread.EDT)
+	public WorldSalts getWorldSalts() {
+		return world.getWorldSalts();
 	}
 
 	@CalledOnlyBy(AmidstThread.EDT)

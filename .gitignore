@@ -8,11 +8,13 @@
 ./AMIDST.eml
 ./AMIDST.iml
 ./.idea/*
+.idea
 /bin
 /dist
 /logs
 /nbproject
 /build
+./target/*
 
 history.txt
 target/

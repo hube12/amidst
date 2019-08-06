@@ -25,7 +25,7 @@ public class VersionFeatures {
 	private final List<Biome> validBiomesAtMiddleOfChunk_OceanRuins;
 	private final List<Biome> validBiomesAtMiddleOfChunk_Shipwreck;
 	private final Function<Long, LocationChecker> mineshaftAlgorithmFactory;
-	private final QuadFunction<Long, BiomeDataOracle, List<Biome>, List<Biome>, LocationChecker> oceanMonumentLocationCheckerFactory;
+	private final QuinFunction<Long, BiomeDataOracle, List<Biome>, List<Biome>, Long,LocationChecker> oceanMonumentLocationCheckerFactory;
 	private final List<Biome> validBiomesAtMiddleOfChunk_OceanMonument;
 	private final List<Biome> validBiomesAtMiddleOfChunk_BuriedTreasure;
 	private final List<Biome> validBiomesForStructure_OceanMonument;
@@ -55,7 +55,7 @@ public class VersionFeatures {
 			List<Biome> validBiomesAtMiddleOfChunk_OceanRuins,
 			List<Biome> validBiomesAtMiddleOfChunk_Shipwreck,
 			Function<Long, LocationChecker> mineshaftAlgorithmFactory,
-			QuadFunction<Long, BiomeDataOracle, List<Biome>, List<Biome>, LocationChecker> oceanMonumentLocationCheckerFactory,
+			QuinFunction<Long, BiomeDataOracle, List<Biome>, List<Biome>, Long, LocationChecker> oceanMonumentLocationCheckerFactory,
 			List<Biome> validBiomesAtMiddleOfChunk_OceanMonument,
 			List<Biome> validBiomesAtMiddleOfChunk_BuriedTreasure,
 			List<Biome> validBiomesForStructure_OceanMonument,
@@ -155,7 +155,7 @@ public class VersionFeatures {
 		return mineshaftAlgorithmFactory;
 	}
 
-	public QuadFunction<Long, BiomeDataOracle, List<Biome>, List<Biome>, LocationChecker> getOceanMonumentLocationCheckerFactory() {
+	public QuinFunction<Long, BiomeDataOracle, List<Biome>, List<Biome>, Long,LocationChecker> getOceanMonumentLocationCheckerFactory() {
 		return oceanMonumentLocationCheckerFactory;
 	}
 

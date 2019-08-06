@@ -25,6 +25,7 @@ public class World {
 	private final MovablePlayerList movablePlayerList;
 	private final RecognisedVersion recognisedVersion;
 	private final VersionFeatures versionFeatures;
+	private final WorldSalts worldSalts;
 
 	private final BiomeDataOracle biomeDataOracle;
 	private final EndIslandOracle endIslandOracle;
@@ -45,6 +46,7 @@ public class World {
 			Consumer<World> onDisposeWorld,
 			WorldSeed worldSeed,
 			WorldType worldType,
+			WorldSalts worldSalts,
 			String generatorOptions,
 			MovablePlayerList movablePlayerList,
 			RecognisedVersion recognisedVersion,
@@ -66,6 +68,7 @@ public class World {
 		this.onDisposeWorld = onDisposeWorld;
 		this.worldSeed = worldSeed;
 		this.worldType = worldType;
+		this.worldSalts=worldSalts;
 		this.generatorOptions = generatorOptions;
 		this.movablePlayerList = movablePlayerList;
 		this.recognisedVersion = recognisedVersion;
@@ -84,6 +87,10 @@ public class World {
 		this.oceanFeaturesProducer = oceanFeaturesProducer;
 		this.netherFortressProducer = netherFortressProducer;
 		this.endCityProducer = endCityProducer;
+	}
+
+	public WorldSalts getWorldSalts() {
+		return worldSalts;
 	}
 
 	public WorldSeed getWorldSeed() {
