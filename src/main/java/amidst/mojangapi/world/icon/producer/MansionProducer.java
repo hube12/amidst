@@ -115,7 +115,7 @@ public class MansionProducer extends CachedWorldIconProducer {
     }
 
     private int getTotalStructureCount() {
-        return 10;
+        return 5;
     }
 
 }
