@@ -33,6 +33,7 @@ public class VillageLocationChecker extends AllValidLocationChecker {
                 MIN_DISTANCE_BETWEEN_SCATTERED_FEATURES,
                 USE_TWO_VALUES_FOR_UPDATE
         );
+        System.out.println(structureSalt);
         LocationChecker biome = new StructureBiomeLocationChecker(biomeDataOracle, STRUCTURE_SIZE, validBiomesForStructure);
 
         if (doComplexVillageCheck) {

@@ -84,6 +84,7 @@ public class AmidstMenuBuilder {
         Menus.item(result, actions::goToCoordinate, "Go to Coordinate", KeyEvent.VK_C, MenuShortcuts.GO_TO_COORDINATE);
         Menus.item(result, actions::goToSpawn, "Go to World Spawn", KeyEvent.VK_S, MenuShortcuts.GO_TO_WORLD_SPAWN);
         Menus.item(result, actions::goToStronghold, "Go to Stronghold", KeyEvent.VK_H, MenuShortcuts.GO_TO_STRONGHOLD);
+        Menus.item(result, actions::goToMansion, "Go to Mansion", KeyEvent.VK_H, MenuShortcuts.GO_TO_MANSION);
         Menus.item(result, actions::goToPlayer, "Go to Player", KeyEvent.VK_P, MenuShortcuts.GO_TO_PLAYER);
         result.addSeparator();
         Menus.item(result, actions::zoomIn, "Zoom in", KeyEvent.VK_I, MenuShortcuts.ZOOM_IN);

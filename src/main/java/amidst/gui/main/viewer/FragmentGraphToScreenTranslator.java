@@ -131,4 +131,12 @@ public class FragmentGraphToScreenTranslator {
 				(long) zoom.screenToWorld(pointOnScreen.x - leftOnScreen),
 				(long) zoom.screenToWorld(pointOnScreen.y - topOnScreen));
 	}
+
+	@CalledOnlyBy(AmidstThread.EDT)
+	public CoordinatesInWorld centerOfScreen() {
+		CoordinatesInWorld corner = graph.getCorner();
+		return corner.add(
+				(long) zoom.screenToWorld(viewerWidth/2.0 - leftOnScreen),
+				(long) zoom.screenToWorld(viewerHeight/2.0 - topOnScreen));
+	}
 }

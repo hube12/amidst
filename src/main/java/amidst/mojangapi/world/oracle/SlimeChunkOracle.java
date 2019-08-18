@@ -7,9 +7,11 @@ import amidst.documentation.Immutable;
 @Immutable
 public class SlimeChunkOracle {
 	private final long seed;
+	private final long salt;
 
-	public SlimeChunkOracle(long seed) {
+	public SlimeChunkOracle(long seed, long salt) {
 		this.seed = seed;
+		this.salt=salt;
 	}
 
 	public boolean isSlimeChunk(long chunkX, long chunkY) {
@@ -23,7 +25,7 @@ public class SlimeChunkOracle {
 	 */
 	private long getSeed(int chunkX, int chunkY) {
 		return seed + chunkX * chunkX * 0x4c1906 + chunkX * 0x5ac0db + chunkY * chunkY * 0x4307a7L + chunkY * 0x5f24f
-				^ 987234911;
+				^ salt;
 	}
 
 	private boolean isSlimeChunk(Random random) {

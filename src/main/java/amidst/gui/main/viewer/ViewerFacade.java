@@ -18,6 +18,8 @@ import amidst.mojangapi.world.coordinates.CoordinatesInWorld;
 import amidst.mojangapi.world.export.WorldExporter;
 import amidst.mojangapi.world.export.WorldExporterConfiguration;
 import amidst.mojangapi.world.icon.WorldIcon;
+import amidst.mojangapi.world.icon.producer.MansionProducer;
+import amidst.mojangapi.world.oracle.BiomeDataOracle;
 import amidst.mojangapi.world.player.MovablePlayerList;
 import amidst.threading.WorkerExecutor;
 
@@ -162,6 +164,13 @@ public class ViewerFacade {
 	@CalledOnlyBy(AmidstThread.EDT)
 	public List<WorldIcon> getStrongholdWorldIcons() {
 		return world.getStrongholdWorldIcons();
+	}
+
+	@CalledOnlyBy(AmidstThread.EDT)
+	public List<WorldIcon> getMansionWorldIcons() {
+
+		CoordinatesInWorld center=translator.centerOfScreen();
+		return(new MansionProducer(getWorldSeed().getLong(),world.getBiomeDataOracle(),world.getVersionFeatures().getValidBiomesForStructure_WoodlandMansion(),center,world.getWorldSalts(),world.getRecognisedVersion()).getWorldIcons());
 	}
 
 	@CalledOnlyBy(AmidstThread.EDT)

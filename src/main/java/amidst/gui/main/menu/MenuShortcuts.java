@@ -23,6 +23,7 @@ public enum MenuShortcuts implements MenuShortcut {
 	GO_TO_COORDINATE("menu shift C"),
 	GO_TO_WORLD_SPAWN("menu shift S"),
 	GO_TO_STRONGHOLD("menu shift H"),
+	GO_TO_MANSION("menu shift M"),
 	GO_TO_PLAYER("menu shift P"),
 	ZOOM_IN("menu K"),
 	ZOOM_OUT("menu J"),

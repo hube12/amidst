@@ -22,10 +22,7 @@ import amidst.gui.main.viewer.ViewerFacade;
 import amidst.gui.seedsearcher.SeedSearcherWindow;
 import amidst.logging.AmidstLogger;
 import amidst.mojangapi.minecraftinterface.RecognisedVersion;
-import amidst.mojangapi.world.WorldOptions;
-import amidst.mojangapi.world.WorldSalts;
-import amidst.mojangapi.world.WorldSeed;
-import amidst.mojangapi.world.WorldType;
+import amidst.mojangapi.world.*;
 import amidst.mojangapi.world.coordinates.CoordinatesInWorld;
 import amidst.mojangapi.world.icon.WorldIcon;
 import amidst.mojangapi.world.player.Player;
@@ -145,6 +142,19 @@ public class Actions {
                     .askForOptions("Go to", "Select Stronghold:", viewerFacade.getStrongholdWorldIcons());
             if (stronghold != null) {
                 viewerFacade.centerOn(stronghold);
+            }
+        }
+    }
+
+    @CalledOnlyBy(AmidstThread.EDT)
+    public void goToMansion() {
+        ViewerFacade viewerFacade = viewerFacadeSupplier.get();
+        if (viewerFacade != null) {
+            WorldIcon Mansion = dialogs
+                    .askForOptions("Go to", "Select Stronghold:", viewerFacade.getMansionWorldIcons());
+
+            if (Mansion != null) {
+                viewerFacade.centerOn(Mansion);
             }
         }
     }
@@ -370,13 +380,16 @@ public class Actions {
     public void changeSaltSlime() {
         WorldSeed salt = dialogs.askForSalt("Slime");
         if (salt != null) {
-            changeSaltSlime(salt);
+            ViewerFacade viewerFacade = viewerFacadeSupplier.get();
+            if (viewerFacade != null) {
+                WorldSalts worldSalts = viewerFacade.getWorldSalts();
+                worldSalts.setSeedForStructure_SlimeChunk(VersionFeature.<Long>builder()
+                        .init(
+                                salt.getLong()
+                        ).construct());
+                setSalt(worldSalts);
+            }
         }
-    }
-
-    @CalledOnlyBy(AmidstThread.EDT)
-    private void changeSaltSlime(WorldSeed salt) {
-
     }
 
     @CalledOnlyBy(AmidstThread.EDT)

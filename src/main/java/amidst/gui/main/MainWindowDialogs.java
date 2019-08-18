@@ -47,7 +47,7 @@ public class MainWindowDialogs {
 
 	@CalledOnlyBy(AmidstThread.EDT)
 	public WorldSeed askForSalt(String type) {
-		return new SeedPrompt(frame).askForSeed();
+		return new SaltPrompt(frame).askForSalt(type);
 	}
 
 	@CalledOnlyBy(AmidstThread.EDT)
