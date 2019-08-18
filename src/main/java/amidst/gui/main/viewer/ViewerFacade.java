@@ -170,6 +170,7 @@ public class ViewerFacade {
 	public List<WorldIcon> getMansionWorldIcons() {
 
 		CoordinatesInWorld center=translator.centerOfScreen();
+
 		return(new MansionProducer(getWorldSeed().getLong(),world.getBiomeDataOracle(),world.getVersionFeatures().getValidBiomesForStructure_WoodlandMansion(),center,world.getWorldSalts(),world.getRecognisedVersion()).getWorldIcons());
 	}
 

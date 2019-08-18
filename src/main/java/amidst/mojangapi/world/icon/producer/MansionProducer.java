@@ -27,47 +27,48 @@ public class MansionProducer extends CachedWorldIconProducer {
     private final CoordinatesInWorld pos;
     private final WorldSalts worldSalts;
     private final RecognisedVersion version;
-	private final StructureBiomeLocationChecker biomeLocationChecker;
+    private final StructureBiomeLocationChecker biomeLocationChecker;
+
     public MansionProducer(long seed, BiomeDataOracle biomeDataOracle, List<Biome> validBiomes, CoordinatesInWorld pos, WorldSalts worldSalts, RecognisedVersion version) {
         this.seed = seed;
         this.pos = pos;
         this.worldSalts = worldSalts;
         this.version = version;
-        this.biomeLocationChecker=new StructureBiomeLocationChecker(biomeDataOracle, 32, validBiomes);
+        this.biomeLocationChecker = new StructureBiomeLocationChecker(biomeDataOracle, 32, validBiomes);
 
-	}
+    }
 
     @Override
     protected List<WorldIcon> doCreateCache() {
         List<WorldIcon> result = new LinkedList<>();
-        long x = pos.getX() / 512;
-        long y = pos.getY() / 512;
+        long x = pos.getX() / 80 / 16;
+        long y = pos.getY() / 80 / 16;
         int RING_NUMBER = 1;
         int structureFound = 0;
         while (structureFound < getTotalStructureCount()) {
             for (int base = -RING_NUMBER; base <= RING_NUMBER + 1; base++) {
-                Pos top=isValidMansion(x + RING_NUMBER, y + base, seed);
-                if (top.success){
-                	result.add(createWorldIcon(new CoordinatesInWorld(top.x,top.z)));
-                	structureFound++;
-				}
-                Pos bottom=isValidMansion(x - RING_NUMBER, y + base, seed);
-				if (bottom.success){
-					result.add(createWorldIcon(new CoordinatesInWorld(bottom.x,bottom.z)));
-					structureFound++;
-				}
+                Pos top = isValidMansion(x + RING_NUMBER, y + base, seed);
+                if (top.success) {
+                    result.add(createWorldIcon(new CoordinatesInWorld(top.x, top.z)));
+                    structureFound++;
+                }
+                Pos bottom = isValidMansion(x - RING_NUMBER, y + base, seed);
+                if (bottom.success) {
+                    result.add(createWorldIcon(new CoordinatesInWorld(bottom.x, bottom.z)));
+                    structureFound++;
+                }
             }
             for (int side = -RING_NUMBER + 1; side < RING_NUMBER; side++) {
                 Pos right = isValidMansion(x + side, y + RING_NUMBER, seed);
-				if (right.success){
-					result.add(createWorldIcon(new CoordinatesInWorld(right.x,right.z)));
-					structureFound++;
-				}
+                if (right.success) {
+                    result.add(createWorldIcon(new CoordinatesInWorld(right.x, right.z)));
+                    structureFound++;
+                }
                 Pos left = isValidMansion(x + side, y - RING_NUMBER, seed);
-				if (left.success){
-					result.add(createWorldIcon(new CoordinatesInWorld(left.x,left.z)));
-					structureFound++;
-				}
+                if (left.success) {
+                    result.add(createWorldIcon(new CoordinatesInWorld(left.x, left.z)));
+                    structureFound++;
+                }
             }
             RING_NUMBER++;
         }
@@ -81,26 +82,26 @@ public class MansionProducer extends CachedWorldIconProducer {
     }
 
     private Pos isValidMansion(long regionX, long regionZ, long seed) {
-    	Pos pos=new Pos();
-		 seed = regionX * 341873128712L + regionZ * 132897987541L + seed + worldSalts.getSeedForStructure_WoodlandMansion().getValue(version);
-        seed = (seed ^ 0x5deece66dL) &((1L << 48)-1);
+        Pos pos = new Pos();
+        seed = regionX * 341873128712L + regionZ * 132897987541L + seed + worldSalts.getSeedForStructure_WoodlandMansion().getValue(version);
+        seed = (seed ^ 0x5deece66dL) & ((1L << 48) - 1);
 
-        seed = (seed * 0x5deece66dL + 0xbL) &0xffffffffffffL;
-        pos.x = (int)((seed >> 17) % CHUNK_RANGE);
-        seed = (seed * 0x5deece66dL + 0xbL ) &0xffffffffffffL;
+        seed = (seed * 0x5deece66dL + 0xbL) & 0xffffffffffffL;
+        pos.x = (int) ((seed >> 17) % CHUNK_RANGE);
+        seed = (seed * 0x5deece66dL + 0xbL) & 0xffffffffffffL;
         pos.x += (seed >> 17) % CHUNK_RANGE;
 
-        seed = (seed * 0x5deece66dL + 0xbL) &0xffffffffffffL;
-        pos.z = (int)((seed >> 17) % CHUNK_RANGE);
-        seed = (seed * 0x5deece66dL + 0xbL) &0xffffffffffffL;
+        seed = (seed * 0x5deece66dL + 0xbL) & 0xffffffffffffL;
+        pos.z = (int) ((seed >> 17) % CHUNK_RANGE);
+        seed = (seed * 0x5deece66dL + 0xbL) & 0xffffffffffffL;
         pos.z += (seed >> 17) % CHUNK_RANGE;
 
-        pos.x = (int)(regionX * REGION_SIZE + (pos.x >> 1));
-        pos.z = (int)(regionZ * REGION_SIZE + (pos.z >> 1));
-        pos.success=biomeLocationChecker.isValidLocation(pos.x,pos.z);
+        pos.x = (int) (regionX * REGION_SIZE + (pos.x >> 1));
+        pos.z = (int) (regionZ * REGION_SIZE + (pos.z >> 1));
+        pos.success = biomeLocationChecker.isValidLocation(pos.x, pos.z);
         pos.x = pos.x * 16 + 8;
         pos.z = pos.z * 16 + 8;
-		return pos;
+        return pos;
     }
 
 

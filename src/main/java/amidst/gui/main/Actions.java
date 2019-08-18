@@ -151,7 +151,7 @@ public class Actions {
         ViewerFacade viewerFacade = viewerFacadeSupplier.get();
         if (viewerFacade != null) {
             WorldIcon Mansion = dialogs
-                    .askForOptions("Go to", "Select Stronghold:", viewerFacade.getMansionWorldIcons());
+                    .askForOptions("Go to", "Select Mansion:", viewerFacade.getMansionWorldIcons());
 
             if (Mansion != null) {
                 viewerFacade.centerOn(Mansion);
